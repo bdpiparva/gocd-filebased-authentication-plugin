@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 ThoughtWorks, Inc.
+ * Copyright 2019 ThoughtWorks, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,21 +16,20 @@
 
 package cd.go.authentication.passwordfile.executor;
 
-import cd.go.authentication.passwordfile.model.Capabilities;
-import cd.go.authentication.passwordfile.model.SupportedAuthType;
+import cd.go.authentication.passwordfile.utils.Util;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.thoughtworks.go.plugin.api.response.DefaultGoPluginApiResponse;
 import com.thoughtworks.go.plugin.api.response.GoPluginApiResponse;
 
-import static com.thoughtworks.go.plugin.api.response.DefaultGoApiResponse.SUCCESS_RESPONSE_CODE;
+public class GetAddUserViewExecutor implements RequestExecutor {
+    private static final Gson GSON = new Gson();
 
-public class GetCapabilitiesExecutor {
-
+    @Override
     public GoPluginApiResponse execute() {
-        Capabilities capabilities = getCapabilities();
-        return new DefaultGoPluginApiResponse(SUCCESS_RESPONSE_CODE, capabilities.toJSON());
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("template", Util.readResource("/add-user.template.html"));
+        return DefaultGoPluginApiResponse.success(GSON.toJson(jsonObject));
     }
 
-    Capabilities getCapabilities() {
-        return new Capabilities(SupportedAuthType.Password, true, false, false, true);
-    }
 }

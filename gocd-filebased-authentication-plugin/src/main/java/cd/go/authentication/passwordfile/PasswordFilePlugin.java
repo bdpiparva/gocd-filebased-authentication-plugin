@@ -49,7 +49,7 @@ public class PasswordFilePlugin implements GoPlugin {
     }
 
     @Override
-    public GoPluginApiResponse handle(GoPluginApiRequest request) throws UnhandledRequestTypeException {
+    public GoPluginApiResponse handle(GoPluginApiRequest request) {
         try {
             switch (RequestFromServer.fromString(request.requestName())) {
                 case REQUEST_GET_PLUGIN_ICON:
@@ -70,6 +70,12 @@ public class PasswordFilePlugin implements GoPlugin {
                     return new SearchUserExecutor(request).execute();
                 case REQUEST_IS_VALID_USER:
                     return new IsValidUserRequestExecutor(request).execute();
+                case REQUEST_GET_ADD_USER_METADATA:
+                    return new GetAddUserMetadataExecutor().execute();
+                case REQUEST_GET_ADD_USER_VIEW:
+                    return new GetAddUserViewExecutor().execute();
+                case REQUEST_ADD_USER:
+                    return new AddUserRequestExecutor(request).execute();
                 default:
                     throw new UnhandledRequestTypeException(request.requestName());
             }

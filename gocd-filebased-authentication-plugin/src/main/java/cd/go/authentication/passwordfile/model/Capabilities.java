@@ -37,12 +37,16 @@ public class Capabilities {
     @SerializedName("can_get_user_roles")
     private final boolean canGetUserRoles;
 
+    @Expose
+    @SerializedName("supports_add_user")
+    private final boolean supportsAddUser;
 
-    public Capabilities(SupportedAuthType supportedAuthType, boolean canSearch, boolean canAuthorize, boolean canGetUserRoles) {
+    public Capabilities(SupportedAuthType supportedAuthType, boolean canSearch, boolean canAuthorize, boolean canGetUserRoles, boolean supportsAddUser) {
         this.supportedAuthType = supportedAuthType;
         this.canSearch = canSearch;
         this.canAuthorize = canAuthorize;
         this.canGetUserRoles = canGetUserRoles;
+        this.supportsAddUser = supportsAddUser;
     }
 
     public static Capabilities fromJSON(String json) {

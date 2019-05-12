@@ -29,7 +29,11 @@ public enum RequestFromServer {
     REQUEST_AUTHENTICATE_USER(Constants.REQUEST_PREFIX + ".authenticate-user"),
     REQUEST_SEARCH_USERS(Constants.REQUEST_PREFIX + ".search-users"),
 
-    REQUEST_IS_VALID_USER(Constants.REQUEST_PREFIX + ".is-valid-user");
+    REQUEST_IS_VALID_USER(Constants.REQUEST_PREFIX + ".is-valid-user"),
+
+    REQUEST_GET_ADD_USER_METADATA(String.join(".", Constants.REQUEST_PREFIX, Constants._USER, "add", "get-metadata")),
+    REQUEST_GET_ADD_USER_VIEW(String.join(".", Constants.REQUEST_PREFIX, Constants._USER, "add", "get-view")),
+    REQUEST_ADD_USER(String.join(".", Constants.REQUEST_PREFIX, Constants._USER, "add"));
 
     private final String requestName;
 
@@ -57,6 +61,7 @@ public enum RequestFromServer {
         String REQUEST_PREFIX = "go.cd.authorization";
         String _AUTH_CONFIG_METADATA = "auth-config";
         String _ROLE_CONFIG_METADATA = "role-config";
+        String _USER = "user";
     }
 }
 
